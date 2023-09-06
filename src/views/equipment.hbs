@@ -1,0 +1,170 @@
+<!--CITED: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<div class="body-container">
+<div class="tabless-container">
+<h4 class="heading">Equipment</h4>
+<table id="equipment-table" class="table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Equipment ID</th>
+            <th>Type</th>
+            <th>Manufacturer</th>
+            <th>Classification</th>
+            <th>Manufacture Year</th>
+            <th>Quantity Owned</th>
+            <th>Quantity Rented</th>
+            <th>Store ID</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, type, manufacturer, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.equipment_id}}>
+            <td data-label="Customer ID">{{this.equipment_id}}</td>
+            <td data-label="Type">{{this.type}}</td>
+            <td data-label="Manufacturer">{{this.manufacturer}}</td>
+            <td data-label="Classification">{{this.classification}}</td>
+            <td data-label="Manufacturer Year">{{this.manufacturer_year}}</td>
+            <td data-label="Quantity Owned">{{this.quantity_owned}}</td>
+            <td data-label="Quantity Rented">{{this.quantity_rented}}</td>
+            <td data-label="Store ID">{{this.store_id}}</td>
+            <td data-label="Edit"><button class="edit-btn" onclick="editEquipment({{this.equipment_id}})">Edit</button></td>
+            <td data-label="Delete"><button class="delete-btn" onclick="deleteEquipment({{this.equipment_id}})">Delete</button></td>
+
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/delete_equipment.js"></script>
+
+
+<div class="forms">
+    <div class="add-body">
+    <div class="add-container">
+
+        <form id='add-equipment-form'>
+           <div class="title">Add New Equipment</div>
+            <div class="user-details">
+            <div class="input-box">
+                <label class="details" for="input-type">Type: </label>
+                <input type="text" name="input-type" id="input-type"><br>
+            </div>
+
+             <div class="input-box">
+                <label class="details" for="input-manufacturer">Manufacturer: </label>
+                <input type="text" name="input-manufacturer" id="input-manufacturer"><br>
+             </div>
+
+             <div class="input-box">
+                <label class="details" for="input-classification">Classification: </label>
+                <input type="text" name="input-classification" id="input-classification"><br>
+             </div>
+
+            <div class="input-box">
+                <label class="details" for="input-manufacturer-year">Manufacturer Year: </label>
+                <input type="text" name="input-manufacturer-year" id="input-manufacturer-year"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-quantity-owned">Quantity Owned: </label>
+                <input type="text" name="input-quantity-owned" id="input-quantity-owned"><br>
+             </div>
+
+            <div class="input-box">
+                <label class="details" for="input-quantity-rented">Quantity Rented: </label>
+                <input type="text" name="input-quantity-rented" id="input-quantity-rented"><br>
+            </div>
+
+            <div class="input-box">
+              <label for="input-store-id">Store ID: </label>
+              <select name="input-store-id" id="input-store-id">
+                  <option>Select Store</option>
+                  {{#each stores}}
+                  <option value="{{this.store_id}}">{{this.store_city}}</option>
+                  {{/each}}
+              </select><br>
+            </div>
+
+            <div class="add-btn" >
+                <input type="submit" name="add-equipment-button" id="add-equipment-button" value="Submit">
+            </div>
+
+        </div>
+
+        </form>
+
+        <form id="edit-equipment-form" style="display:none;">
+            <div class="title">Edit Customer</div>
+            <div class="user-details">
+            <div class="input-box">
+                <label class="details" for="edit-type">Type: </label>
+                <input type="text" name="edit-type" id="edit-type"><br>
+            </div>
+
+             <div class="input-box">
+                <label class="details" for="edit-manufacturer">Manufacturer: </label>
+                <input type="text" name="edit-manufacturer" id="edit-manufacturer"><br>
+             </div>
+
+            <div class="input-box">
+                <label class="details" for="edit-classification">Classification: </label>
+                <input type="text" name="edit-classification" id="edit-classification"><br>
+            </div>
+
+             <div class="input-box">
+                <label class="details" for="edit-manufacturer-year">Manufacturer Year: </label>
+                <input type="text" name="edit-manufacturer-year" id="edit-manufacturer-year"><br>
+             </div>
+
+            <div class="input-box">
+                <label class="details" for="edit-quantity-owned">Quantity Owned: </label>
+                <input type="text" name="edit-quantity-owned" id="edit-quantity-owned"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="edit-quantity-rented">Quantity Rented: </label>
+                <input type="text" name="edit-quantity-rented" id="edit-quantity-rented"><br>
+            </div>
+
+             <div class="input-box">
+               <label for="edit-store-id">Store ID: </label>
+               <select name="edit-store-id" id="edit-store-id">
+                   <option>Select Store</option>
+                   {{#each stores}}
+                   <option value="{{this.store_id}}">{{this.store_city}}</option>
+                   {{/each}}
+               </select><br>
+             </div>
+
+             <div class="add-btn" >
+                 <input type="submit" name="edit-equipment-button" id="edit-equipment-button" value="Edit">
+             </div>
+
+             <div class="cancel-btn">
+                   <input type="cancel" value="Cancel" onclick="cancelEdit()">
+             </div>
+          </div>
+        </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+
+
+<script src="./js/add_equipment.js"></script>
+<script src="./js/edit_equipment.js"></script>

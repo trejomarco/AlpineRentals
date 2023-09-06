@@ -1,0 +1,145 @@
+<!--CITED: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<div class="body-container">
+<div class="tabless-container">
+    <h4 class="heading">Rentals</h4>
+<table id="rental-table" class="table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Rental ID</th>
+            <th>Employee ID</th>
+            <th>Customer ID</th>
+            <th>Equipment ID</th>
+            <th>Store ID</th>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, employee-id, customer-id, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.rental_id}}>
+            <td data-label="Rental ID">{{this.rental_id}}</td>
+            <td data-label="Employee ID">{{this.employee_id}}</td>
+            <td data-label="Customer ID">{{this.customer_id}}</td>
+            <td data-label="Equipment ID">{{this.equipment_id}}</td>
+            <td data-label="Store ID">{{this.store_id}}</td>
+            <td data-label="Rental Date">{{this.rental_date}}</td>
+            <td data-label="Return Date">{{this.return_date}}</td>
+            <td data-label="Edit"><button class="edit-btn" onclick="editRental({{this.rental_id}})">Edit</button></td>
+            <td data-label="Delete"><button class="delete-btn" onclick="deleteRental({{this.rental_id}})">Delete</button></td>
+
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/delete_rental.js"></script>
+
+
+<div class="forms">
+    <div class="add-body">
+    <div class="add-container">
+    <form id='add-rental-form'>
+         <div class="title">Add a New Rental</div>
+        <div class="user-details">
+            <div class="input-box">
+                <label class="details" for="input-employee-id">Employee: </label>
+                <input type="text" name="input-employee-id" id="input-employee-id"><br>
+            </div>
+         <div class="input-box">
+              <label class="details" for="input-customer-id">Customer: </label>
+            <input type="text" name="input-customer-id" id="input-customer-id"><br>
+         </div>
+
+         <div class="input-box">
+            <label class="details" for="input-equipment-id">Equipment: </label>
+            <input type="text" name="input-equipment-id" id="input-equipment-id"><br>
+         </div>
+
+        <div class="input-box">
+            <label class="details" for="input-store-id">Store: </label>
+            <input type="text" name="input-store-id" id="input-store-id"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="input-rental-date">Rental Date: </label>
+            <input type="date" name="input-rental-date" id="input-rental-date"><br>
+        </div>
+
+         <div class="input-box">
+               <label class="details" for="input-return-date">Return Date: </label>
+            <input type="date" name="input-return-date" id="input-return-date"><br>
+         </div>
+
+         <div class="add-btn" >
+             <input type="submit" name="add-rental-button" id="add-rental-button" value="Submit">
+         </div>
+
+    </div>
+
+    </form>
+
+    <form id="edit-rental-form" style="display:none;">
+       <div class="title">Edit Rental</div>
+        <div class="user-details">
+        <div class="input-box">
+            <label class="details" for="edit-employee-id">Employee: </label>
+            <input type="text" name="edit-employee-id" id="edit-employee-id"><br>
+        </div>
+        <div class="input-box">
+            <label class="details" for="edit-customer-id">Customer: </label>
+            <input type="text" name="edit-customer-id" id="edit-customer-id"><br>
+        </div>
+
+         <div class="input-box">
+              <label class="details" for="edit-equipment-id">Equipment: </label>
+            <input type="text" name="edit-equipment-id" id="edit-equipment-id"><br>
+         </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-store-id">Store: </label>
+            <input type="text" name="edit-store-id" id="edit-store-id"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-rental-date">Rental Date: </label>
+            <input type="date" name="edit-rental-date" id="edit-rental-date"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-return-date">Return Date: </label>
+            <input type="date" name="edit-return-date" id="edit-return-date"><br>
+        </div>
+
+         <div class="add-btn" >
+             <input type="submit" name="edit-rental-button" id="edit-rental-button" value="Edit">
+         </div>
+
+        <div class="cancel-btn">
+            <input type="button" value="Cancel" onclick="cancelEdit()">
+        </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+
+
+<script src="./js/add_rental.js"></script>
+<script src="./js/edit_rental.js"></script>

@@ -1,0 +1,122 @@
+<!--CITED: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<div class="body-container">
+<div class="tabless-container">
+    <h4 class="heading">Stores</h4>
+<table id="store-table" class="table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Store ID</th>
+            <th>Store Address</th>
+            <th>Store City</th>
+            <th>Store State</th>
+            <th>Store Zip</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, store-address, store-city, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.store_id}}>
+            <td data-label="Store ID">{{this.store_id}}</td>
+            <td data-label="Street Address">{{this.store_address}}</td>
+            <td data-label="City">{{this.store_city}}</td>
+            <td data-label="State">{{this.store_state}}</td>
+            <td data-label="Zip">{{this.store_zip}}</td>
+            <td data-label="Edit"><button class="edit-btn" onclick="editStore({{this.store_id}})">Edit</button></td>
+            <td data-label="Delete"><button class="delete-btn" onclick="deleteStore({{this.store_id}})">Delete</button></td>
+
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/delete_store.js"></script>
+
+
+<div class="forms">
+    <div class="add-body">
+    <div class="add-container">
+    <form id='add-store-form'>
+        <div class="title">Add New Store</div>
+        <div class="user-details">
+            <div class="input-box">
+                <label class="details" for="input-store-address">Store Address: </label>
+                <input type="text" name="input-store-address" id="input-store-address"><br>
+            </div>
+            <div class="input-box">
+                <label class="details" for="input-store-city">Store City: </label>
+                <input type="text" name="input-store-city" id="input-store-city"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-store-state">Store State: </label>
+                <input type="text" name="input-store-state" id="input-store-state"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-store-zip">Store Zipcode: </label>
+                <input type="text" name="input-store-zip" id="input-store-zip"><br>
+            </div>
+
+            <div class="add-btn" >
+                <input type="submit" name="add-store-button" id="add-store-button" value="Submit">
+            </div>
+
+        </div>
+
+    </form>
+
+    <form id="edit-store-form" style="display:none;">
+       <div class="title">Edit Store</div>
+        <div class="user-details">
+        <div class="input-box">
+            <label class="details" for="edit-store-address">Store Address: </label>
+            <input type="text" name="edit-store-address" id="edit-store-address"><br>
+        </div>
+        <div class="input-box">
+            <label class="details" for="edit-store-city">Store City: </label>
+        <input type="text" name="edit-store-city" id="edit-store-city"><br>
+        </div>
+
+        <div class="input-box">
+             <label class="details" for="edit-store-state">Store State: </label>
+            <input type="text" name="edit-store-state" id="edit-store-state"><br>
+        </div>
+
+         <div class="input-box">
+             <label class="details" for="edit-store-zip">Store Zipcode: </label>
+            <input type="text" name="edit-store-zip" id="edit-store-zip"><br>
+         </div>
+
+        <div class="add-btn" >
+            <input type="submit" name="edit-store-button" id="edit-store-button" value="Edit">
+        </div>
+
+        <div class="cancel-btn">
+            <input type="button" value="Cancel" onclick="cancelEdit()">
+        </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+
+
+<script src="./js/add_store.js"></script>
+<script src="./js/edit_store.js"></script>

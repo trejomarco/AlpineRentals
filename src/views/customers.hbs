@@ -1,0 +1,180 @@
+<!--CITED: https://github.com/osu-cs340-ecampus/nodejs-starter-app-->
+
+<div class="body-container">
+<div class="tabless-container">
+    <h4 class="heading">Customers</h4>
+
+<table id="customer-table" class="table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Customer ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Street Addresss</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.customer_id}}>
+            <td data-label="Customer ID">{{this.customer_id}}</td>
+            <td data-label="First Name">{{this.first_name}}</td>
+            <td data-label="Last Name">{{this.last_name}}</td>
+            <td data-label="Email Address">{{this.email}}</td>
+            <td data-label="Phone Number">{{this.phone_number}}</td>
+            <td data-label="Street Address">{{this.customer_address}}</td>
+            <td data-label="City">{{this.customer_city}}</td>
+            <td data-label="State">{{this.customer_state}}</td>
+            <td data-label="Zip">{{this.customer_zip}}</td>
+            <td data-label="Edit"><button class="edit-btn" onclick="editCustomer({{this.customer_id}})">Edit</button></td>
+            <td data-label="Delete"><button class="delete-btn" onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/delete_customer.js"></script>
+
+
+
+
+
+
+
+<div class="forms">
+<div class="add-body">
+
+
+<div class="add-container">
+
+        <form id='add-customer-form'>
+        <div class="title">Add a New Customer</div>
+        <div class="user-details">
+            <div class="input-box">
+                <label class="details" for="input-fname">First Name: </label>
+                <input type="text" name="input-fname" id="input-fname"><br>
+            </div>
+            <div class="input-box">
+                <label class="details" for="input-lname">Last Name: </label>
+                <input type="text" name="input-lname" id="input-lname"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-email">Email: </label>
+                <input type="text" name="input-email" id="input-email"><br>
+            </div>
+
+
+            <div class="input-box">
+                <label class="details" for="input-phone-number">Phone Number: </label>
+                <input type="text" name="input-phone-number" id="input-phone-number"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-customer-address">Address: </label>
+                <input type="text" name="input-customer-address" id="input-customer-address"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-customer-city">City: </label>
+                <input type="text" name="input-customer-city" id="input-customer-city"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-customer-state">State: </label>
+                <input type="text" name="input-customer-state" id="input-customer-state"><br>
+            </div>
+
+            <div class="input-box">
+                <label class="details" for="input-customer-zip">Zipcode: </label>
+                <input type="text" name="input-customer-zip" id="input-customer-zip"><br>
+            </div>
+
+            <div class="add-btn" >
+                <input type="submit" name="add-customer-button" id="add-customer-button" value="Submit">
+            </div>
+
+        </div>
+    </form>
+
+    <form id="edit-customer-form" style="display:none;">
+        <div class="title">Edit Customer</div>
+        <div class="user-details">
+        <div class="input-box">
+            <label class="details" for="edit-fname">First Name: </label>
+            <input type="text" name="edit-fname" id="edit-fname"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-lname">Last Name: </label>
+             <input type="text" name="edit-lname" id="edit-lname"><br>
+        </div>
+
+         <div class="input-box">
+            <label class="details" for="edit-email">Email: </label>
+            <input type="text" name="edit-email" id="edit-email"><br>
+        </div>
+         <div class="input-box">
+            <label class="details"for="edit-phone-number">Phone Number: </label>
+            <input type="text" name="edit-phone-number" id="edit-phone-number"><br>
+        </div>
+         <div class="input-box">
+            <label class="details" for="edit-customer-address">Address: </label>
+            <input type="text" name="edit-customer-address" id="edit-customer-address"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-customer-city">City: </label>
+            <input type="text" name="edit-customer-city" id="edit-customer-city"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-customer-state">State: </label>
+            <input type="text" name="edit-customer-state" id="edit-customer-state"><br>
+        </div>
+
+        <div class="input-box">
+            <label class="details" for="edit-customer-zip">Zipcode: </label>
+            <input type="text" name="edit-customer-zip" id="edit-customer-zip"><br>
+        </div>
+
+         <div class="add-btn" >
+        <input type="submit" name="edit-customer-button" id="edit-customer-button" value="Edit">
+        </div>
+
+         <div class="cancel-btn">
+              <input type="cancel" value="Cancel" onclick="cancelEdit()">
+         </div>
+
+
+
+        </div>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+
+
+<script src="./js/add_customer.js"></script>
+<script src="./js/edit_customer.js"></script>
